@@ -11,8 +11,7 @@ public class ScrBtnCtrl : MonoBehaviour {
 
     void Awake()
     {
-        //TEST 나중에 지웁시다
-        Debug.Log("2017-04-05-18:01");
+    
         //버튼 컴포넌트를 넣어두자!
         button = GetComponent<Button>();
         //버튼 이벤트 동적 할당

@@ -6,6 +6,7 @@ using System.IO;
 
 public class ScrBtnSet : MonoBehaviour {
 
+    public GameObject canvasObj;
     public Transform content;
 
     private void Awake()
@@ -15,14 +16,6 @@ public class ScrBtnSet : MonoBehaviour {
 
     IEnumerator CoLoad_Image()
     {
-
-        //if (!Directory.Exists(@"C:\testImg\"))
-        //{
-        //    System.IO.Directory.CreateDirectory(@"C:\testImg\");
-        //}
-
-        //string[] filePaths = Directory.GetFiles(@"C:\testImg\", "*.png");
-
         //파일이 있는가 확인
         if (!Directory.Exists(Application.dataPath + "/../Resources"))
         {   //파일이 없다면 파일을 생성한다.
@@ -32,8 +25,8 @@ public class ScrBtnSet : MonoBehaviour {
         //해당 파일에서 .png의 확장자를 가지는 모든 파일의 이름을 배열에 저장한다.
         string[] filePaths = Directory.GetFiles(Application.dataPath + "/../Resources", "*.png");
 
-        Image LeftImg = transform.FindChild("Panel/LeftBackImage/LeftFrontImage").GetComponent<Image>();
-        Image RightImg = transform.FindChild("Panel/RightBackImage/RightFrontImage").GetComponent<Image>();
+        Image LeftImg = canvasObj.transform.FindChild("Panel/LeftBackImage/LeftFrontImage").GetComponent<Image>();
+        Image RightImg = canvasObj.transform.FindChild("Panel/RightBackImage/RightFrontImage").GetComponent<Image>();
         //content의 자식중에 ScrBtnCtrl 컴포넌트를 가진 애들을 저장
         ScrBtnCtrl[] contentBts = content.GetComponentsInChildren<ScrBtnCtrl>();
         //Sprite 사이즈는 filePaths 배열의 길이 만큼
@@ -52,7 +45,7 @@ public class ScrBtnSet : MonoBehaviour {
             Rect rec = new Rect(0, 0, new_texture.width, new_texture.height);
             //Sprite를 새롭게 생성한다.
             sprites[i] = Sprite.Create(new_texture, rec, new Vector2(0.5f, 0.5f), 100);
-            print(sprites.Length);
+      
 
         }
 
